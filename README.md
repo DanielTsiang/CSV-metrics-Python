@@ -38,7 +38,7 @@ the cost of labour as percentage of sales.
 
 e.g.,
 ```
-Hour  Sales	  Labour	 %
+Hour  Sales	  Labour  %
 7:00	100	    30	    30%
 8:00	300	    60	    20%
 ```
