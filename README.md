@@ -4,7 +4,7 @@
 Python code to understand the most and least profitable hour of the day for a given restaurant when considering labour cost and gross sales. Data is parsed from two csvs, one describing the shifts, and the other one describing the hourly sales revenue.
 
 ### Example
-![Output from code](https://user-images.githubusercontent.com/74436899/106059508-b5953380-60ea-11eb-8c07-8c76ca274b14.PNG "Output from code")
+![Output from code](https://user-images.githubusercontent.com/74436899/109802876-3ed2e500-7c18-11eb-8fcd-0669a67a52b7.png "Output from code")
 
 #### Labour Data
 A shift will include the pay-rate (per hour), the start and end time, and a text field where the manager will enter break info. This may vary depending on the individual manager.
