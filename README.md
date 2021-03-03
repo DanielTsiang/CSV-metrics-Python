@@ -1,7 +1,7 @@
 # CSV metrics
 
 ### Description
-Python code to understand the most and least profitable hour of the day for a given restaurant when considering labour cost and gross sales. Data is parsed from two csvs, one describing the shifts, and the other one describing the hourly sales revenue.
+Python code to understand the most and least profitable hour of the day for a given restaurant when considering labour cost and gross sales. Data is parsed from two CSVs, one describing the shifts, and the other one describing the hourly sales revenue.
 
 ### Example
 ![Output from code](https://user-images.githubusercontent.com/74436899/109802876-3ed2e500-7c18-11eb-8fcd-0669a67a52b7.png "Output from code")
