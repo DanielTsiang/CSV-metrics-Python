@@ -1,7 +1,7 @@
 # CSV metrics
 
 ### Description
-Python code to understand the most and least profitable hour of the day for a given restaurant when looking at labour cost. Data parsed from two csvs, one describing the shifts, and one describing the hourly sales.
+Python code to understand the most and least profitable hour of the day for a given restaurant when considering labour cost and gross sales. Data is parsed from two csvs, one describing the shifts, and the other one describing the hourly sales revenue.
 
 ### Example
 ![Output from code](https://user-images.githubusercontent.com/74436899/106059508-b5953380-60ea-11eb-8c07-8c76ca274b14.PNG "Output from code")
@@ -46,17 +46,15 @@ Hour  Sales	  Labour     %
 #### Best and Worst Hours
 Lastly, the code can output which hour was the best and worst in terms of labour cost as a percentage of sales. If the sales are null, then -cost is returned instead of percentage. (e.g -40).
 
-### Example
-
 ### Technologies Used
 * Python
 
 ### Goals
 * Refresh skills in Python and Pandas library.
 * Utilise Python to parse and clean data from csv files.
-* Be able to handle break period data entered in different formats.
-* Resample datetime and financial data into hourly basis, and store in dictionaries.
-* Calculate most and least profitable hour based on profit from sales and labour cost.
+* Be able to handle time period data entered in different formats.
+* Resample datetime and financial data into hourly basis, and store in dictionaries data structure.
+* Calculate most and least profitable hour based on revenue from sales and labour cost.
 
 ### Getting Started
 1. With transaction.csv and work_shifts.csv in the same folder, in the terminal, run "python daniel_tsiang_solution.py".
