@@ -39,10 +39,10 @@ def process_shifts(path_to_csv):
     # Dropping old columns
     df.drop(columns =["break_notes"], inplace = True)
 
+    # Convert break times to 24-hour format
+    mylist = ['.', ':']
+    minutes = ':00'
     for index, row in df.iterrows():
-        # Convert break times to 24-hour format
-        mylist = ['.', ':']
-        minutes = ':00'
         if all(x not in row['start_break'] for x in mylist):
             df.loc[index, 'start_break'] += minutes
         if all(x not in row['end_break'] for x in mylist):
@@ -59,8 +59,8 @@ def process_shifts(path_to_csv):
             df.loc[index, 'end_break'] += pd.Timedelta(hours=12)
 
     # Initialise shifts dictionary with hourly times and 0 labour costs
-    shifts = dict()
-    for i in range(0, 24):
+    shifts = {}
+    for i in range(24):
         hour = convert_hour_to_key(i)
         shifts.update({hour : 0})
 
@@ -76,14 +76,13 @@ def process_shifts(path_to_csv):
             key = convert_hour_to_key(hour)
             pay = 0
             # Check if hour is in break time
-            if hour >= row['start_break'].hour and hour <= row['end_break'].hour :
+            if hour >= row['start_break'].hour and hour <= row['end_break'].hour:
                 if hour < row['end_break'].hour:
                     # Skip this hour, no pay as break hour
                     continue
-                else:
-                    # Enter here if break time less than 1 hour
-                    break_time_in_hours = pd.Timedelta(df.loc[index,'end_break'] - dt.strptime(key, '%H:%M')).seconds / 3600
-                    pay = (1 - break_time_in_hours) * row['pay_rate']
+                # Enter here if break time less than 1 hour
+                break_time_in_hours = pd.Timedelta(df.loc[index,'end_break'] - dt.strptime(key, '%H:%M')).seconds / 3600
+                pay = (1 - break_time_in_hours) * row['pay_rate']
             else:
                 # This if statement accounts for if last hour worked is less than 1 hour
                 if hour == end_shift_hour:
@@ -129,8 +128,8 @@ def process_sales(path_to_csv):
     df = df1.resample('60min', on='time').sum()
 
     # Initialise sales dictionary with hourly times and 0 sales
-    sales = dict()
-    for i in range(0, 24):
+    sales = {}
+    for i in range(24):
         hour = convert_hour_to_key(i)
         sales.update({hour : 0})
 
@@ -161,16 +160,14 @@ def compute_percentage(shifts, sales):
     :rtype: dict
     """
     # Initialise empty percentages dictionary
-    percentages = dict()
+    percentages = {}
 
     # Iterate through each hour and calculate percentages
     for (hour1, sale), (hour2, labour) in zip(sales.items(), shifts.items()):
         if sale > 0:
             percentage = (labour/sale) * 100
         else:
-            if labour > 0:
-                percentage = -1 * labour
-            else: percentage = 0
+            percentage = -1 * labour if labour > 0 else 0
         percentages.update({hour1 : percentage})
 
     return percentages
@@ -195,7 +192,12 @@ def best_and_worst_hour(percentages):
         worst_hour = max(percentages, key=percentages.get)
 
     # best_hour is the key of the minimum positive percentage
-    best_hour = min([(percentage, hour) for (hour, percentage) in percentages.items() if percentage > 0])[1]
+    best_hour = min(
+        (percentage, hour)
+        for (hour, percentage) in percentages.items()
+        if percentage > 0
+    )[1]
+
 
     print(f"best hour: {best_hour}, worst hour: {worst_hour}")
 
