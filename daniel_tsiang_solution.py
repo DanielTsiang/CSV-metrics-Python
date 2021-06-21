@@ -31,7 +31,7 @@ def process_shifts(path_to_csv):
     df['break_notes'] = df['break_notes'].str.replace(' ', '')
     df['break_notes'] = df['break_notes'].str.replace('PM', '')
     df['break_notes'] = df['break_notes'].str.replace('AM', '')
-    df['break_notes'] = df['break_notes'].str.replace('.', ':')
+    df['break_notes'] = df['break_notes'].str.replace('.', ':', regex=False)
 
     # Split break_notes column into two separate columns using '-'
     df[['start_break','end_break']] = df.break_notes.str.split("-", n = 1, expand = True)
