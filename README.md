@@ -57,8 +57,9 @@ Lastly, the code can output which hour was the best and worst in terms of labour
 * Calculate most and least profitable hour based on revenue from sales and labour cost.
 
 ### Getting Started
-1. With transaction.csv and work_shifts.csv in the same folder, in the terminal, run "python daniel_tsiang_solution.py".
-2. The best and worst hours for the restaurant will be printed to the terminal.
+1. Visit a demo [here](https://replit.com/@DanielTsiang/CSV-metrics-Python).
+2. Click the green button button to run the code.
+3. The best and worst hours for the restaurant will be printed to the terminal.
 
 ### Contribution Guidelines
 If you would like to contribute code, identify bugs, or propose improvements, please fork this repository and submit a pull request with your suggestions. Below are some helpful links to help you get started:
